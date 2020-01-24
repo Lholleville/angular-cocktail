@@ -1,0 +1,7 @@
+<div *ngIf="!recipes.length">Chargement en cours</div>
+
+<mat-grid-list cols="2" rowHeight="700px">
+  <mat-grid-tile *ngFor="let recipe of recipes">
+    <app-recipe [recipe] = "recipe"></app-recipe>
+  </mat-grid-tile>
+</mat-grid-list>
