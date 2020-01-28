@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Recipe } from '../../model/recipe.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Recipe } from '../../shared/model/recipe.model';
 
 @Component({
   selector: 'app-recipe',
@@ -12,6 +12,9 @@ export class RecipeComponent implements OnInit {
   @Input()
   recipe: Recipe;
 
+  @Output()
+  delete = new EventEmitter<number>();
+
   public show = false;
 
   constructor() { }
@@ -20,6 +23,9 @@ export class RecipeComponent implements OnInit {
 
   toggleExpand() {
     this.show = !this.show;
-    console.log(this.recipe.name);
+  }
+
+  deleteRecipe() {
+    this.delete.emit(this.recipe.id);
   }
 }

@@ -1,4 +1,4 @@
-import { Recipe } from '../model/recipe.model';
+import { Recipe } from '../shared/model/recipe.model';
 
 export const MOCK_RECIPES: Recipe[] = [
   {

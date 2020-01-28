@@ -2,6 +2,6 @@
 
 <mat-grid-list cols="2" rowHeight="700px">
   <mat-grid-tile *ngFor="let recipe of recipes">
-    <app-recipe [recipe] = "recipe"></app-recipe>
+    <app-recipe [recipe] = "recipe" (delete) = "deleteRecipe($event)"></app-recipe>
   </mat-grid-tile>
 </mat-grid-list>

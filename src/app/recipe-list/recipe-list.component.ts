@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MOCK_RECIPES } from '../mock/recipes.mock';
-import { RecipeService } from '../service/recipe.service';
-import { Recipe } from '../model/recipe.model';
+import { RecipeService } from '../shared/service/recipe.service';
+import { Recipe } from '../shared/model/recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,6 +15,17 @@ export class RecipeListComponent implements OnInit {
   constructor(private readonly recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.allRecipes();
+  }
+
+  deleteRecipe(id: number) {
+    this.recipeService.deleteApi(id).subscribe(() => {
+        this.allRecipes();
+      }
+    );
+  }
+
+  allRecipes() {
     this.recipeService.getRecipes().subscribe(
       (result: Recipe[]) => {
         this.recipes = result;

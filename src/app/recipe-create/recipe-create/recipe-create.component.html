@@ -1,0 +1,31 @@
+<div class="example-container">
+  <form [formGroup]="recipeForm">
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="name" formControlName="name" name="name">
+      <mat-error *ngIf="!recipeForm.get('name').valid">
+        this field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Picture url" [(ngModel)]="picture" formControlName="picture" name="picture">
+      <mat-error *ngIf="!recipeForm.get('picture').valid">
+        this field must be an url
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Textarea" [(ngModel)]="description" formControlName="description" name="description"></textarea>
+      <mat-error *ngIf="!recipeForm.get('description').valid">
+        this field is required
+      </mat-error>
+      <mat-error *ngIf="recipeForm.get('description').hasError('required')">
+        this field must have a length of 20+ characters
+      </mat-error>
+    </mat-form-field>
+
+    <div class="example-button-row">
+       <button mat-raised-button color="primary" (click)="submit()">Create !</button>
+    </div>
+  </form>
+</div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Recipe } from '../model/recipe.model';
-import { MOCK_RECIPES } from '../mock/recipes.mock';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -22,4 +21,13 @@ export class RecipeService {
   getRecipe(id: number): Observable<Recipe>{
     return this.httpClient.get<Recipe>(`${ this.url }/${id}`);
   }
+
+  postToApi(RecipeToCreate: Partial<Recipe>): Observable<number>{
+    return this.httpClient.post<number>(this.url, RecipeToCreate);
+  }
+
+  deleteApi(id: number): Observable<any> {
+    return this.httpClient.delete(`${ this.url }/${id}`);
+  }
+
 }
